@@ -1,0 +1,22 @@
+body
+{
+    font: 1em/1.618 Inter, sans-serif;
+    background: linear-gradient(#123 30%, #667);
+    color: whitesmoke;
+    height: 100vh;
+    position: relative;
+}
+
+footer{
+    position: fixed; /* Cambia a position: fixed; */
+    bottom: 0;
+    width: 100vw;
+    height: 10vh;
+    background-color: #f0f5f2;
+    color: #1d1d29;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+}
