@@ -42,7 +42,7 @@ public class UsuarioServicio implements UserDetailsService {
     
     
     @Transactional
-    public void registrar(MultipartFile archivo, String nombre, String email, String password, String password2) throws MiExcepcion
+    public void registrar(MultipartFile archivo, String nombre, Rol rol, String email, String password, String password2) throws MiExcepcion
     {
         validar(nombre, email, password, password2);
         
@@ -51,7 +51,7 @@ public class UsuarioServicio implements UserDetailsService {
         usuario.setNombre(nombre);
         usuario.setEmail(email);
         usuario.setPassword(new BCryptPasswordEncoder().encode(password));
-        usuario.setRol(Rol.USER);
+        usuario.setRol(rol);
         usuario.setFechaAlta(new Date());
         
 //        set de imagen de perfil al usuario

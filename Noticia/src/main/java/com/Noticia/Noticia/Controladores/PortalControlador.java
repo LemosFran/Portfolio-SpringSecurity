@@ -6,7 +6,10 @@ package com.Noticia.Noticia.Controladores;
 
 import Excepciones.MiExcepcion;
 import com.Noticia.Noticia.Entidades.Usuario;
+import com.Noticia.Noticia.Enumeraciones.Rol;
 import com.Noticia.Noticia.Servicio.UsuarioServicio;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +42,11 @@ public class PortalControlador {
         return "index.html";
     }
     
+    @ModelAttribute("roles")
+    public List<Rol> getRoles() {
+        return Arrays.asList(Rol.values()); // Esto proporcionará una lista de todos los roles disponibles
+    }
+    
     @GetMapping("/registrar")
     public String registrar()
     {
@@ -45,16 +54,17 @@ public class PortalControlador {
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, @RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile archivo) throws MiExcepcion
+    public String registro(@RequestParam String nombre, @RequestParam Rol rol,@RequestParam String email, @RequestParam String password, @RequestParam String password2, ModelMap modelo, MultipartFile archivo) throws MiExcepcion
     {
         try {
-            usuarioServicio.registrar(archivo ,nombre, email, password, password2);
+            usuarioServicio.registrar(archivo ,nombre, rol, email, password, password2);
             modelo.put("exito", "Ha sido registrado con éxito");
             return "registro.html";
         } catch (MiExcepcion ex) {
             modelo.put("error", ex.getMessage());
             modelo.put("nombre", nombre);
             modelo.put("email", email);
+            modelo.put("rol", rol);
             
             return "registro.html";
         }
@@ -85,13 +95,13 @@ public class PortalControlador {
     }
     
   
-    //VIDEO 11 ver la imagen de perfil
+   
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-    @GetMapping("/perfil")//no hace falta el {id} porque teneoms acceso a trves de nuestra session
-    public String perfil(ModelMap modelo, HttpSession session) // a traves de la sesio recuperar los datos del usuario
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo, HttpSession session) 
     {
-        Usuario usuario = (Usuario) session.getAttribute("usuariosession");//guardomos todos los datos del usuario que esta logeado
-        modelo.put("usuario", usuario);//ponemos / mandamos esos datos para que se complete el html
+        Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+        modelo.put("usuario", usuario);
         return "usuario_modificar.html";
     }
     
