@@ -3,7 +3,7 @@
 
 # Portfolio-SpringBoot-Security
 (Esp)
-Proyecto que simula ser el dashboard simple de trabajo para un periodista, con un login para acceder a la aplicación y de registro, en el registro se puede incluir una foto de perfil que se vera en la lista de usuarios que tanto como las noticias y los usuario se pueden modificar, eliminar, cargar y visualizar lo
+Proyecto que simula ser el dashboard simple aplicación web de trabajo para un periodista, con un login para acceder a la aplicación y de registro, en el registro se puede incluir una foto de perfil que se vera en la lista de usuarios que tanto como las noticias y los usuario se pueden modificar, eliminar, cargar y visualizar lo
 que se encuentran en la base de datos. También se conceden permisos para hacer las diferentes actividades diferenciando a los usuarios y a los administradores.
 
 
@@ -14,7 +14,7 @@ Dependencias utilizadas: Spring Web, MySQL Driver, Thymeleaf(Template Engine), S
 
 (Eng)
 (eng)
-Project that pretends to be the simple work dashboard for a journalist, with a login to access the application and registration, in the registration you can include a profile photo that will be seen in the list of users who both like the news and the user can modify, delete, load and view what
+Project that pretends to be the simple web App for a journalist, with a login to access the application and registration, in the registration you can include a profile photo that will be seen in the list of users who both like the news and the user can modify, delete, load and view what
 that are in the database. Permissions are also granted to do the different activities, differentiating users and administrators.
 
 
